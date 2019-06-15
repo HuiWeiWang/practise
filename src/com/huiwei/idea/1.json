@@ -1,0 +1,13 @@
+100:"Continue"
+102:"Processing"
+103:"Checking"
+
+200:"Ok"
+201:"Created"
+202:"Accepted"
+
+302:"Found"
+
+401:"Unauthorized"
+409:"Conflict"
+410:"Gone"
