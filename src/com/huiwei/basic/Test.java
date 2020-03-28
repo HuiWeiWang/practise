@@ -11,10 +11,6 @@ import java.util.List;
  **/
 public class Test {
     public static void main(String[] args) {
-        List list = new ArrayList<>();
-        list.add("aaa");
-        list.add("bbb");
-        System.out.println(list.size());
-        ClassLoader.getSystemClassLoader();
+        System.out.println(System.getProperty("java."));
     }
 }
