@@ -17,6 +17,7 @@ public class SingletonTest06 {
 
 // 懒汉式(线程安全，同步方法)
 class Singleton {
+	//这里加volatile关键字禁止指令重排
 	private static volatile Singleton instance;
 	
 	private Singleton() {}
