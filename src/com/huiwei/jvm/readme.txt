@@ -1,4 +1,9 @@
 圣思园张龙JVM学习地址:https://github.com/weolwo/jvm-learn
+
+一、jvm相关命令
+java控制台：jconsole
+java极大成者：jvisualvm
+
 指定类加载路径来运行java：java -Djava.ext.dirs=./ com.huiwei.basic.Test
 打包class文件：jar cvf test.jar com/huiwei/basic/Test.class
 反编译：javap -c -verbose com.huiwei.basic.Test

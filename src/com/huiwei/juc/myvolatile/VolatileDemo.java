@@ -1,4 +1,4 @@
-package com.huiwei.juc;
+package com.huiwei.juc.myvolatile;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -10,9 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  **/
 public class VolatileDemo {
     public static void main(String[] args) {
-       // seeOkByVolatile();
+        seeOkByVolatile();
        // notAtomicWithVolatile();
-        atomicAdd();
+       // atomicAdd();
     }
     //验证volatile不能保证原子性
     private static void notAtomicWithVolatile() {
@@ -51,7 +51,7 @@ public class VolatileDemo {
         new Thread(()->{
             System.out.println(Thread.currentThread().getName()+" come in");
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
                 data.addTo60();
                 System.out.println(Thread.currentThread().getName()+" update number value:"+data.number);
             } catch (InterruptedException e) {
@@ -69,7 +69,7 @@ public class VolatileDemo {
 }
 
 class MyData{
-    volatile int number = 0;
+    int number = 0;
     AtomicInteger atomicInteger = new AtomicInteger();
     public void addTo60(){
         this.number = 60;
