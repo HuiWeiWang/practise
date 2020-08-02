@@ -35,6 +35,7 @@ public class MyThreadPool {
                 threadPoolTrue.execute(()->{
                     System.out.println(Thread.currentThread().getName()+"\t 办理业务"+count);
                 });
+                threadPoolTrue.submit(()->{});
             }
         }catch (Exception e){
             e.printStackTrace();

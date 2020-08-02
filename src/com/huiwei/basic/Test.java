@@ -11,6 +11,8 @@ import java.util.List;
  **/
 public class Test {
     public static void main(String[] args) {
-        System.out.println(System.getProperty("java."));
+        double a = 1.335d;
+        float b = 1.335f;
+        System.out.println(a==b);
     }
 }

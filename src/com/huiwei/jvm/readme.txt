@@ -3,6 +3,7 @@
 一、jvm相关命令
 java控制台：jconsole
 java极大成者：jvisualvm
+界面优美的ui监控器：jmc
 
 指定类加载路径来运行java：java -Djava.ext.dirs=./ com.huiwei.basic.Test
 打包class文件：jar cvf test.jar com/huiwei/basic/Test.class
@@ -18,17 +19,27 @@ java极大成者：jvisualvm
 
 二、垃圾回收
 
+总体原则：GC包括minor GC和 full GC，由于full GC会产生STW(stop the world)，所以尽量避免。
 
+回收判断算法：
+1、引用计数法（不能解决循环引用的问题）（用GC Roots解决）
+2、gc roots
+ps:可以作为roots的对象：
+（1）局部变量
+（2）类的静态变量
+（3）native方法的变量
 
 回收算法：
-1、引用计数法（不能解决循环引用的问题）（用GC Roots解决）
-2、复制算法
-3、标记清除算法（节约空间，产生内存碎片）
-4、标记整理算法（能清理碎片，但是效率低）
+1、复制算法（用于young区，适合生命周期较短的对象）
+2、标记清除算法（节约空间，产生内存碎片）
+3、标记整理算法（能清理碎片，但是效率低）
+4、分代算法（堆空间垃圾收集的整体算法）
 垃圾回收先进行可达性分析，以GC Roots对象为根进行遍历，不能遍历到的对象就是不可达对象
 
 垃圾回收器：
 Serial（串行垃圾回收器）（UseSerialGC、UseSerialOldGC(不用了)）
+ps：使用参数-xx:+UseSerialGC开启串行垃圾回收器：
+young区：
 Parallel（并行垃圾回收器）(UseParallelGC、UseParNewGC、UseParallelOldGC)
 CMS（并发标记清除垃圾回收器）(UseConcMarkSweepGC)（并发收集停顿低，并发执行，对cpu资源压力大，采用的标记清除算法会导致大量碎片）
 G1（将内存分成小块并发地回收）（UseG1GC）
@@ -70,6 +81,8 @@ UseParallelGC   并行垃圾回收器
 UseSerialGC   串行垃圾回收器
 SurvivorRatio  调整young区各部分的比例（设置的是eden区，剩下的2个1给from区和to区）
 NewRatio       设置年轻代和老年代的比例（设置的是老年代，剩下的1给年轻代）
+PretenureSizeThreshold:设置对象超过多大时可以直接进入老年代
+
 
 MaxDirectMemorySize 直接物理内存
 
@@ -85,7 +98,7 @@ MaxDirectMemorySize 直接物理内存
 
 五、OOM
 1、StackOverflowError 栈溢出（递归调用方法）
-2、OutOfMemoryError:java heap space
+2、OutOfMemoryError:java heap space(循环创建对象)
 3、OutOfMemoryError：GC overhead limit exceeded(不停地垃圾回收却没用)
 4、OutOfMemoryError：Direct buffer memory(本地内存溢出)
 5、OutOfMemoryError：unable to create new native thread （不能创建更多本地线程）
@@ -96,6 +109,17 @@ MaxDirectMemorySize 直接物理内存
 常量池；
 静态变量；
 即时编译后的代码
+
+CMS算法的过程分4步：
+1、初始标记（SWT）
+2、并发标记
+3、重新标记（SWT）
+4、并发清除
+
+重要概念：
+安全点和安全区域
+空间分配担保
+
 
 
 
