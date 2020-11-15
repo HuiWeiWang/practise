@@ -1,7 +1,6 @@
-package com.huiwei.arth.sort;
+package com.huiwei.arth.datastructure.sort;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -14,9 +13,9 @@ public class MergeSort {
         mergeSort(arr,0,arr.length-1,temp);
         System.out.println(Arrays.toString(arr));*/
         // 创建要给80000个的随机的数组
-        int[] arr = new int[100000];
-        for (int i = 0; i < 100000; i++) {
-            arr[i] = (int) (Math.random() * 100000); // 生成一个[0, 8000000) 数
+        int[] arr = new int[100000000];
+        for (int i = 0; i < 100000000; i++) {
+            arr[i] = (int) (Math.random() * 100000000); // 生成一个[0, 8000000) 数
         }
 
         System.out.println("排序前");

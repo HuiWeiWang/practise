@@ -70,11 +70,11 @@ public class Test {
 }
 
 class MyList<T>{
-    private Object[] elementData;
+    private T[] elementData;
     private int size;
     private static final int DEFAULT_CAPACITY = 10;
     MyList(){
-        this.elementData = new Object[DEFAULT_CAPACITY];
+        this.elementData = (T[])new Object[DEFAULT_CAPACITY];
     }
     public Object get(int i) {
         return elementData[i];
@@ -85,7 +85,7 @@ class MyList<T>{
         if(size == elementData.length){
             Object[] newArr = new Object[elementData.length<<1];
             System.arraycopy(elementData,0,newArr,0,elementData.length);
-            elementData = newArr;
+            elementData = (T[])newArr;
         }
         elementData[size++] = obj;
     }

@@ -1,17 +1,15 @@
-package com.huiwei.arth.sort;
+package com.huiwei.arth.datastructure.sort;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
- * 选择排序
+ *冒泡排序
  */
-public class SelectSort {
-
+public class BubbleSort {
     public static void main(String[] args) {
-       // int[] a = new int[]{8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
-       // selectSort(a);
+       // int[] a = new int[]{10, 3, 8, 1, 2, 7};
+      //  bubbleSort(a);
         // 创建要给80000个的随机的数组
         int[] arr = new int[100000];
         for (int i = 0; i < 100000; i++) {
@@ -25,7 +23,7 @@ public class SelectSort {
         System.out.println("排序前的时间是=" + date1Str);
 
         //shellSort(arr); //交换式
-        selectSort(arr);//移位方式
+        bubbleSort(arr);//移位方式
 
         Date data2 = new Date();
         String date2Str = simpleDateFormat.format(data2);
@@ -33,21 +31,22 @@ public class SelectSort {
     }
 
     /**
-     * 选择排序
-     * @param arr
+     * 冒泡排序
+     *
+     * @param array
      */
-    public static void selectSort(int arr[]){
-        for (int i = 0; i < arr.length ; i++) {
-            int min = i;
-            for (int j = i+1; j < arr.length ; j++) {
-                if(arr[j]<arr[min]){
-                    min = j;
+
+    private static void bubbleSort(int[] array) {
+        int temp = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
                 }
             }
-            int temp = arr[i];
-            arr[i] = arr[min];
-            arr[min] = temp;
         }
-     //   System.out.println(Arrays.toString(arr));
+    //    System.out.println(Arrays.toString(array));
     }
 }

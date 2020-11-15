@@ -3,20 +3,20 @@ package com.huiwei.exam;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Stack;
 
 public class Test01 {
     public static void main(String[] args) {
-        String str = "hello     world     java  ";
-       // System.out.println(str);
-        printClearGap(str);
-        //è¾“å…¥ä¸€ä¸ªå­—ç¬¦ä¸²
-        //5ã€
-      /*  String str = "aaabbbccc";
-        Map<Character, Integer> map = statisticalCount( str );
-        System.out.println( map );*/
+        //printClearGap("hello     world     java  ");
+        Stack<String>  stack = new Stack<>();
+        stack.push("aa");
+        stack.push("bb");
+        stack.push("cc");
+        String peek = stack.peek();
+        System.out.println(peek);
     }
 
-    //é¢˜ç›® 1. ç»™å®šä¸€ä¸ªStringå­—ç¬¦ä¸²ï¼Œæ‰“å°å‡ºæ‰€æœ‰çš„å­ä¸²ï¼ˆsubStringï¼‰
+    //ÌâÄ¿ 1. ¸ø¶¨Ò»¸öString×Ö·û´®£¬´òÓ¡³öËùÓĞµÄ×Ó´®£¨subString£©
     public static void printSubString(String str) {
         for (int i = 0; i <= str.length(); i++) {
             for (int j = i + 1; j <= str.length(); j++) {
@@ -26,38 +26,47 @@ public class Test01 {
 
     }
 
-    //é¢˜ç›®2ï¼šè¾“å…¥"hello     world     java  ",è¾“å‡º"java world hello"
+    //ÌâÄ¿2£ºÊäÈë"hello     world     java  ",Êä³ö"java world hello"
     public static void printClearGap(String str) {
-        str = str.trim();
-        String newStr = "";
+        if (str == null || str == "") {
+            System.out.println("ÄãÊäÈëµÄ×Ö·û´®Îª¿Õ£¬ÇëÖØĞÂÊäÈë");
+        }
         char[] chars = str.toCharArray();
-        int count = 0;
+
+        StringBuilder result = new StringBuilder();
+        String singleStr = "";
+        Stack<String> stack = new Stack<>();
+
         for (int i = 0; i < chars.length; i++) {
-            if(chars[i] == ' '){
-                count++;
+            if (chars[i] == ' ') {
+                if (singleStr != "") {
+                    stack.push(singleStr);
+                    singleStr = "";
+                }
                 continue;
             }
-            if(count!=0){
-                newStr+=" ";
-                count=0;
-            }
-            newStr+=chars[i];
+            singleStr += chars[i];
         }
-        System.out.println(newStr);
+
+        while (!stack.isEmpty()) {
+            result.append(stack.pop()).append(" ");
+        }
+
+        System.out.println(result.toString().trim());
     }
 
 
-    //é¢˜ç›® 3ï¼šJavaé›†åˆç±»æœ‰å“ªäº›ï¼Œå…¶ä¸­Listå¦‚ä½•æ’åº
+    //ÌâÄ¿ 3£ºJava¼¯ºÏÀàÓĞÄÄĞ©£¬ÆäÖĞListÈçºÎÅÅĞò
 
 
-    //javaé›†åˆç±»ä¸»è¦æœ‰2å¤§åˆ†æ”¯ï¼ˆ1ï¼‰Collection ï¼ˆ2ï¼‰Map
-    //å…¶ä¸­listæ¥å£ä¸‹æœ‰ï¼šArrayListã€LinkedList å’Œ Vectorã€‚
-    //Setæ¥å£ä¸‹æœ‰ï¼šHashSetã€TreeSetã€LinkedHashSet
-    //Mapæ¥å£ä¸‹æœ‰ï¼šHashMapã€LinkedHashMapã€Hashtable å’Œ TreeMap
-    //Listæ’åºé€šè¿‡å®ƒçš„å…ƒç´ å®ç°Comparableæ¥å£è¿›è¡Œæ’åº
+    //java¼¯ºÏÀàÖ÷ÒªÓĞ2´ó·ÖÖ§£¨1£©Collection £¨2£©Map
+    //ÆäÖĞlist½Ó¿ÚÏÂÓĞ£ºArrayList¡¢LinkedList ºÍ Vector¡£
+    //Set½Ó¿ÚÏÂÓĞ£ºHashSet¡¢TreeSet¡¢LinkedHashSet
+    //Map½Ó¿ÚÏÂÓĞ£ºHashMap¡¢LinkedHashMap¡¢Hashtable ºÍ TreeMap
+    //ListÅÅĞòÍ¨¹ıËüµÄÔªËØÊµÏÖComparable½Ó¿Ú½øĞĞÅÅĞò
 
-    /*é¢˜ç›® 4ï¼šå®ç° Java listï¼Œè¦æ±‚å®ç° list çš„ get(), add(), remove() ä¸‰ä¸ªåŠŸèƒ½å‡½æ•°, ä¸èƒ½ç›´æ¥ä½¿ç”¨ ArrayListã€
-    LinkedList ç­‰ Java è‡ªå¸¦é«˜çº§ç±»
+    /*ÌâÄ¿ 4£ºÊµÏÖ Java list£¬ÒªÇóÊµÏÖ list µÄ get(), add(), remove() Èı¸ö¹¦ÄÜº¯Êı, ²»ÄÜÖ±½ÓÊ¹ÓÃ ArrayList¡¢
+    LinkedList µÈ Java ×Ô´ø¸ß¼¶Àà
     public class MyList {
 
         public Object get(int i) {
@@ -73,7 +82,7 @@ public class Test01 {
 */
 
     /*
-    é¢˜ç›® 5ï¼šç»Ÿè®¡ä¸€ä¸ªå­—ç¬¦ä¸²abc1123abâ€¦ä¸­æ¯ä¸ªå­—ç¬¦å‡ºç°çš„æ¬¡æ•°
+    ÌâÄ¿ 5£ºÍ³¼ÆÒ»¸ö×Ö·û´®abc1123ab¡­ÖĞÃ¿¸ö×Ö·û³öÏÖµÄ´ÎÊı
     */
     public static Map<Character, Integer> statisticalCount(String str) {
         Map<Character, Integer> map = new HashMap<>();
@@ -89,15 +98,15 @@ public class Test01 {
     }
 
 /*
-é¢˜ç›® 6ï¼šç”¨ä¸€æ¡SQLè¯­å¥ æŸ¥è¯¢å‡ºæ¯é—¨è¯¾éƒ½å¤§äº80åˆ†çš„å­¦ç”Ÿå§“å. è¡¨ç»“æ„ä¸æ•°æ®å¦‚ä¸‹ï¼š
+ÌâÄ¿ 6£ºÓÃÒ»ÌõSQLÓï¾ä ²éÑ¯³öÃ¿ÃÅ¿Î¶¼´óÓÚ80·ÖµÄÑ§ÉúĞÕÃû. ±í½á¹¹ÓëÊı¾İÈçÏÂ£º
      name   kecheng   fenshu
-     å¼ ä¸‰     è¯­æ–‡       81
-     å¼ ä¸‰     æ•°å­¦       75
-     æå››     è¯­æ–‡       76
-     æå››     æ•°å­¦       90
-     ç‹äº”     è¯­æ–‡       81
-     ç‹äº”     æ•°å­¦       100
-     ç‹äº”     è‹±è¯­       90
+     ÕÅÈı     ÓïÎÄ       81
+     ÕÅÈı     ÊıÑ§       75
+     ÀîËÄ     ÓïÎÄ       76
+     ÀîËÄ     ÊıÑ§       90
+     ÍõÎå     ÓïÎÄ       81
+     ÍõÎå     ÊıÑ§       100
+     ÍõÎå     Ó¢Óï       90
 */
 //select name from (select name,min(fenshu) from student group by name having min(fenshu)>80) stu;
 

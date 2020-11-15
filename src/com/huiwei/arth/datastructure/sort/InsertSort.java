@@ -1,7 +1,6 @@
-package com.huiwei.arth.sort;
+package com.huiwei.arth.datastructure.sort;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 public class InsertSort {
@@ -45,5 +44,15 @@ public class InsertSort {
             array[j+1]=value;
         }
       //  System.out.println(Arrays.toString(array));
+
+        for (int i = 1; i < array.length ; i++) {
+            int j = i -1;
+            int value = array[i];
+            while (j >= 0 && array[j] > value){
+                array[j+1] = array[j];
+                j--;
+            }
+            array[j+1] = value;
+        }
     }
 }

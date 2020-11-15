@@ -1,7 +1,6 @@
-package com.huiwei.arth.sort;
+package com.huiwei.arth.datastructure.sort;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -12,9 +11,9 @@ public class ShellSort {
        // int[] a = new int[]{8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
 
         // 创建要给80000个的随机的数组
-        int[] arr = new int[100000];
-        for (int i = 0; i < 100000; i++) {
-            arr[i] = (int) (Math.random() * 100000); // 生成一个[0, 8000000) 数
+        int[] arr = new int[100000000];
+        for (int i = 0; i < 100000000; i++) {
+            arr[i] = (int) (Math.random() * 100000000); // 生成一个[0, 8000000) 数
         }
 
         System.out.println("排序前");
@@ -23,8 +22,8 @@ public class ShellSort {
         String date1Str = simpleDateFormat.format(data1);
         System.out.println("排序前的时间是=" + date1Str);
 
-        shellSort(arr); //交换式
-        //shellSort1(arr);//移位方式
+        //shellSort(arr); //交换式
+        shellSort1(arr);//移位方式
 
         Date data2 = new Date();
         String date2Str = simpleDateFormat.format(data2);
